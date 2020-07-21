@@ -8,6 +8,11 @@ public class TextMessageService {
 	
 	@GetMapping("/hello")
 	public String sayHello() {
-		return "hello";
+		return "Hello! Welcome to Devops..";
+	}
+	
+	@GetMapping("/world")
+	public String HelloWorld() {
+		return "Welcome to World!";
 	}
 }
