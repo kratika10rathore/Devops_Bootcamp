@@ -1,5 +1,5 @@
 FROM openjdk:8-jdk-alpine
-EXPOSE 9999
+EXPOSE 8087
 
 ARG JAR_FILE=target/*.jar
 
