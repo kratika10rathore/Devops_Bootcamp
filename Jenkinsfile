@@ -29,7 +29,15 @@ node {
     stage("docker run"){
         def dockerHome = tool name: 'Docker', type: 'dockerTool'
         def dockerCMD = "${dockerHome}/bin/docker"
-        sh "${dockerCMD} run -p 8088:9999 -d kratika1/cicd:1.2"
+        sh "${dockerCMD} run -p 8085:8087 -d kratika1/cicd:1.2"
+    }
+    
+    stage("push to pcf"){
+        withCredentials([usernamePassword(credentialsId: 'Pivotal', passwordVariable: 'password', usernameVariable: 'username')]) {
+    // some block
+        sh "cf login -a https://api.run.pivotal.io -u ${username} -p ${password} -o devops-bootcamp -s development"
+}
+        sh "cf push spring1 --docker-image kratika1/cicd:1.2"
     }
     
     
